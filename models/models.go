@@ -19,10 +19,15 @@ type PublicAccount struct {
 }
 
 type Article struct {
-	ID         int
-	URL        string
-	AccountID  int
-	CreateTime time.Time
+	ID           uint      `gorm:"primary_key" json:"id"`
+	Biz          string    `gorm:"index" json:"biz"`
+	Title        string    `json:"title"`
+	Content      string    `gorm:"type:text" json:"content"`
+	Author       string    `json:"author"`
+	PubDate      time.Time `gorm:"type:timestamp" json:"pub_date"`
+	URL          string    `json:"url"`
+	HTML         string    `gorm:"type:text" json:"html"`
+	AccountName  string    `gorm:"-" json:"account_name"`
 }
 
 var db *sql.DB
